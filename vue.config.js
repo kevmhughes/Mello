@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/simple-Vue-application/'
+    publicPath: '/simple-Vue-application'
   }
