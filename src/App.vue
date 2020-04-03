@@ -69,7 +69,7 @@ export default {
     line-height: 1.4 !important;
     margin-right: 30px !important;
     background-color: #ffffff;
-    background-image: url("./assets/image1.png");
+    background-image: url("./assets/ricefields.jpg");
     background-repeat: no-repeat;
     background-position: center; 
   }
