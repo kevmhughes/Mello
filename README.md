@@ -6,7 +6,7 @@
 
 It is a Kanban board "to-do list" application similar to Trello.
 
-### Users:
+### Users can:
 
 * drag and drop the lists. 
 * move tasks from one list to another.
