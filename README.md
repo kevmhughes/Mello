@@ -8,10 +8,12 @@ It is a Kanban board "to-do list" application similar to Trello.
 
 ### Users:
 
-* can choose a level of Engish to be tested on.
-* answer four multiple-choice questions from each level.
-* review their results from the test.
-* can choose to be tested on a different level of English once they have finished the current test.
+* drag and drop the lists. 
+* move tasks from one list to another.
+* change the order of the lists.
+* reorganize the lists as they please.
+* click a task to see, or edit the details.
+* change the background image by choosing from a pre-determined selection.
 
 # Take a Look at the App [here](https://kevmhughes.github.io/Mello/)
 
