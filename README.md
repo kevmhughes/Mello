@@ -4,7 +4,7 @@ Take a look at the app [here](https://kevmhughes.github.io/Mello/)
 
 # Description
 
-**Mello** is a responsive application built with the **Vue** framework, and using **Material Design** (Vue Material) for the UI.
+**Mello** is a responsive application built with the **Vue** framework, using **Material Design** (Vue Material) for the UI.
 
 It is a Kanban board "to-do list" application similar to Trello.
 
