@@ -11,38 +11,39 @@ export default {
   props: {
     board: {
       type: Object,
-      required: true
+      required: true,
     },
     image: {
       type: String,
-      required: true
+      required: true,
     },
     oldImg: {
       type: String,
-      required: true
+      required: true,
     },
     imgIndex: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     setBackground(board, newImg, oldImg, imgIndex) {
-      let oldImgTN = "";
-      let oldImgNewLength = oldImg.length - 5;
+      let oldImgTN = '';
+      const oldImgNewLength = oldImg.length - 5;
+      // eslint-disable-next-line no-plusplus
       for (let i = 0; i < oldImgNewLength; i++) {
-        let letter = oldImg[i];
-        oldImgTN = oldImgTN + letter;
+        const letter = oldImg[i];
+        oldImgTN += letter;
       }
-      let newImgFull = newImg + "_full";
-      this.$store.commit("CHANGE_IMAGE", {
+      const newImgFull = `${newImg}_full`;
+      this.$store.commit('CHANGE_IMAGE', {
         board,
         newImgFull,
         oldImgTN,
-        imgIndex
+        imgIndex,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

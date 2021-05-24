@@ -6,7 +6,8 @@
     :board="board"
     class="board"
     id="whole-board"
-    :style="{'background-image': 'url(' + require('../assets/' + board.backgroundImg + '.jpg') + ')'}"
+    :style="{'background-image': 'url(' + require('../assets/' +
+    board.backgroundImg + '.jpg') + ')'}"
   >
     <div class="header">
       <h1 class="title">Mello</h1>
@@ -45,75 +46,74 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import BackgroundButton from "../components/BackgroundButton";
-import BoardColumn from "../components/BoardColumn";
+import { mapState } from 'vuex';
+import BackgroundButton from './BackgroundButton.vue';
+import BoardColumn from './BoardColumn.vue';
+
 export default {
   components: {
     BoardColumn,
-    BackgroundButton
+    BackgroundButton,
   },
   data() {
     return {
-      newColumnName: ""
+      newColumnName: '',
     };
   },
   computed: {
-    ...mapState(["board"]),
+    ...mapState(['board']),
     isTaskOpen() {
-      return this.$route.name === "task";
-    }
+      return this.$route.name === 'task';
+    },
   },
   methods: {
     close() {
-      this.$router.push({ name: "board" });
+      this.$router.push({ name: 'board' });
     },
     createColumn() {
-      if (this.newColumnName !== "") {
-        this.$store.commit("CREATE_COLUMN", {
-          name: this.newColumnName
+      if (this.newColumnName !== '') {
+        this.$store.commit('CREATE_COLUMN', {
+          name: this.newColumnName,
         });
-        this.newColumnName = "";
+        this.newColumnName = '';
       }
     },
     autoColumnCreate(e, board) {
-      const theType = e.dataTransfer.getData("type");
+      const theType = e.dataTransfer.getData('type');
       const toEl = e.target.className;
       if (
-        theType === "task" &&
-        toEl !== "text-input" &&
-        toEl !== "column-name" &&
-        toEl !== "column-x" &&
-        toEl !== "the-column" &&
-        toEl !== ""
+        theType === 'task'
+        && toEl !== 'text-input'
+        && toEl !== 'column-name'
+        && toEl !== 'column-x'
+        && toEl !== 'the-column'
+        && toEl !== ''
       ) {
-        const fromColumnIndex = e.dataTransfer.getData("from-column-index");
-        const fromTaskIndex = e.dataTransfer.getData("from-task-index");
-        const taskName =
-          board.columns[fromColumnIndex].tasks[fromTaskIndex].name;
-        const taskDescription =
-          board.columns[fromColumnIndex].tasks[fromTaskIndex].description;
+        const fromColumnIndex = e.dataTransfer.getData('from-column-index');
+        const fromTaskIndex = e.dataTransfer.getData('from-task-index');
+        const taskName = board.columns[fromColumnIndex].tasks[fromTaskIndex].name;
+        const taskDescription = board.columns[fromColumnIndex].tasks[fromTaskIndex].description;
         const taskId = board.columns[fromColumnIndex].tasks[fromTaskIndex].id;
-        if (e.target.id === "whole-board" || e.target.id === "create-column") {
-          this.$store.commit("CREATE_COLUMN_FROM_DROP", {
+        if (e.target.id === 'whole-board' || e.target.id === 'create-column') {
+          this.$store.commit('CREATE_COLUMN_FROM_DROP', {
             fromColumnIndex,
             fromTaskIndex,
             taskName,
             taskDescription,
-            taskId
+            taskId,
           });
         }
-        //FIX DISPLAY
+        // FIX DISPLAY
         const fromTasks = board.columns[fromColumnIndex].tasks;
         setTimeout(() => {
-          fromTasks.forEach(task => {
+          fromTasks.forEach((task) => {
             const cardToFix = document.getElementById(task.id);
-            cardToFix.style.display = "inline-block";
+            cardToFix.style.display = 'inline-block';
           });
         }, 10);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

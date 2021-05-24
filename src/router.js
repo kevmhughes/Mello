@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Board from './views/Board.vue'
-import Task from './views/Task.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Board from './views/Board.vue';
+import Task from './views/Task.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
@@ -17,9 +17,9 @@ export default new Router({
         {
           path: 'task/:id',
           name: 'task',
-          component: Task
-        }
-      ]
-    }
-  ]
-})
+          component: Task,
+        },
+      ],
+    },
+  ],
+});

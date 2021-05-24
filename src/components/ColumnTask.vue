@@ -23,86 +23,86 @@ export default {
   props: {
     task: {
       type: Object,
-      required: true
+      required: true,
     },
     taskIndex: {
       type: Number,
-      required: true
+      required: true,
     },
     columnIndex: {
       type: Number,
-      required: true
+      required: true,
     },
     column: {
       type: Object,
-      required: true
+      required: true,
     },
     board: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     pickupTask(e, taskIndex, fromColumnIndex) {
-      //REMOVE ON PICKUP
+      // REMOVE ON PICKUP
       const card = document.getElementById(e.target.id);
       setTimeout(() => {
-        card.style.display = "none";
+        card.style.display = 'none';
       }, 0);
-      e.dataTransfer.effectAllowed = "move";
-      e.dataTransfer.dropEffect = "move";
-      e.dataTransfer.setData("from-task-index", taskIndex);
-      e.dataTransfer.setData("from-column-index", fromColumnIndex);
-      e.dataTransfer.setData("type", "task");
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.dropEffect = 'move';
+      e.dataTransfer.setData('from-task-index', taskIndex);
+      e.dataTransfer.setData('from-column-index', fromColumnIndex);
+      e.dataTransfer.setData('type', 'task');
     },
     goToTask(task) {
-      this.$router.push({ name: "task", params: { id: task.id } });
+      this.$router.push({ name: 'task', params: { id: task.id } });
     },
     moveTaskOrColumn(e, toTasks, toColumnIndex, toTaskIndex, board) {
-      const type = e.dataTransfer.getData("type");
-      if (type === "task") {
+      const type = e.dataTransfer.getData('type');
+      if (type === 'task') {
         this.moveTask(
           e,
           toTasks,
           toTaskIndex !== undefined ? toTaskIndex : toTasks.length,
-          board
+          board,
         );
       } else {
         this.moveColumn(e, toColumnIndex);
       }
     },
     moveTask(e, toTasks, toTaskIndex, board) {
-      const fromColumnIndex = e.dataTransfer.getData("from-column-index");
+      const fromColumnIndex = e.dataTransfer.getData('from-column-index');
       const fromTasks = board.columns[fromColumnIndex].tasks;
-      const fromTaskIndex = e.dataTransfer.getData("from-task-index");
-      //FIX DISPLAY
+      const fromTaskIndex = e.dataTransfer.getData('from-task-index');
+      // FIX DISPLAY
       setTimeout(() => {
-        fromTasks.forEach(task => {
+        fromTasks.forEach((task) => {
           const cardToFix = document.getElementById(task.id);
-          cardToFix.style.display = "inline-block";
+          cardToFix.style.display = 'inline-block';
         });
       }, 10);
-      this.$store.commit("MOVE_TASK", {
+      this.$store.commit('MOVE_TASK', {
         fromTasks,
         fromTaskIndex,
         toTasks,
-        toTaskIndex
+        toTaskIndex,
       });
     },
     moveColumn(e, toColumnIndex) {
-      const fromColumnIndex = e.dataTransfer.getData("from-column-index");
-      this.$store.commit("MOVE_COLUMN", {
+      const fromColumnIndex = e.dataTransfer.getData('from-column-index');
+      this.$store.commit('MOVE_COLUMN', {
         fromColumnIndex,
-        toColumnIndex
+        toColumnIndex,
       });
     },
     deleteTask(task, taskIndex) {
-      this.$store.commit("DELETE_TASK", {
+      this.$store.commit('DELETE_TASK', {
         task,
-        taskIndex
+        taskIndex,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

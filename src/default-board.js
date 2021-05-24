@@ -1,4 +1,4 @@
-import { uuid } from './utils'
+import { uuid } from './utils';
 
 export default {
   name: 'Mello-Master',
@@ -19,23 +19,23 @@ export default {
           name: 'Drag and Drop',
           id: uuid(),
           userAssigned: null,
-          column: 'Welcome to Mello'
+          column: 'Welcome to Mello',
         },
         {
           description: 'Click a task to see/edit details',
           name: 'Add Details',
           id: uuid(),
           userAssigned: null,
-          column: 'Welcome to Mello'
+          column: 'Welcome to Mello',
         },
         {
           description: 'Change the background. Reorganize your lists as you please!',
           name: 'Personalize!',
           id: uuid(),
           userAssigned: null,
-          column: 'Welcome to Mello'
+          column: 'Welcome to Mello',
         },
-      ]
+      ],
     },
-  ]
-}
+  ],
+};

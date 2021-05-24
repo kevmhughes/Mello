@@ -37,92 +37,93 @@
 </template>
 
 <script>
-import ColumnTask from "./ColumnTask";
+import ColumnTask from './ColumnTask.vue';
+
 export default {
   components: { ColumnTask },
   props: {
     column: {
       type: Object,
-      required: true
+      required: true,
     },
     columnIndex: {
       type: Number,
-      required: true
+      required: true,
     },
     board: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     moveTaskOrColumn(e, toTasks, toColumnIndex, toTaskIndex, board) {
-      const type = e.dataTransfer.getData("type");
-      if (type === "task") {
+      const type = e.dataTransfer.getData('type');
+      if (type === 'task') {
         this.moveTask(
           e,
           toTasks,
           toTaskIndex !== undefined ? toTaskIndex : toTasks.length,
           toColumnIndex,
-          board
+          board,
         );
       } else {
         this.moveColumn(e, toColumnIndex);
       }
     },
     moveTask(e, toTasks, toTaskIndex, toColumnIndex, board) {
-      const fromColumnIndex = e.dataTransfer.getData("from-column-index");
+      const fromColumnIndex = e.dataTransfer.getData('from-column-index');
       const fromTasks = board.columns[fromColumnIndex].tasks;
-      const fromTaskIndex = e.dataTransfer.getData("from-task-index");
-      fromTasks.forEach(element => {
+      const fromTaskIndex = e.dataTransfer.getData('from-task-index');
+      fromTasks.forEach((element) => {
         const eachTask = document.getElementById(element.id);
-        eachTask.style.display = "inline-block";
+        eachTask.style.display = 'inline-block';
       });
-      this.$store.commit("MOVE_TASK", {
+      this.$store.commit('MOVE_TASK', {
         fromTasks,
         fromTaskIndex,
         toTasks,
         toTaskIndex,
-        toColumnIndex
+        toColumnIndex,
       });
     },
     moveColumn(e, toColumnIndex) {
-      const fromColumnIndex = e.dataTransfer.getData("from-column-index");
-      this.$store.commit("MOVE_COLUMN", {
+      const fromColumnIndex = e.dataTransfer.getData('from-column-index');
+      this.$store.commit('MOVE_COLUMN', {
         fromColumnIndex,
-        toColumnIndex
+        toColumnIndex,
       });
     },
     pickupColumn(e, fromColumnIndex) {
-      e.dataTransfer.effectAllowed = "move";
-      e.dataTransfer.dropEffect = "move";
-      e.dataTransfer.setData("from-column-index", fromColumnIndex);
-      e.dataTransfer.setData("type", "column");
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.dropEffect = 'move';
+      e.dataTransfer.setData('from-column-index', fromColumnIndex);
+      e.dataTransfer.setData('type', 'column');
     },
     createTask(e, tasks, columnIndex, columnName) {
-      if (e.target.value !== "") {
-        this.$store.commit("CREATE_TASK", {
+      if (e.target.value !== '') {
+        this.$store.commit('CREATE_TASK', {
           tasks,
           name: e.target.value,
           columnIndex,
-          columnName
+          columnName,
         });
-        e.target.value = "";
+        e.target.value = '';
       }
     },
     columnDelete(column, columnIndex) {
-      this.$store.commit("DELETE_COLUMN", {
+      this.$store.commit('DELETE_COLUMN', {
         column,
-        columnIndex
+        columnIndex,
       });
     },
     updateColumnProp(e, key) {
-      this.$store.commit("UPDATE_COLUMN", {
+      this.$store.commit('UPDATE_COLUMN', {
         column: this.column,
         key,
-        value: e.target.value
+        value: e.target.value,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
